@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offices At PinkWalk - Manglam Group</title>
+    <title>PinkSignature - Corporate Offices @ PinkWalk</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
            RESET & BASE STYLES
@@ -33,9 +33,9 @@
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Outfit', sans-serif;
             line-height: 1.25;
-            font-weight: 300; }
+            font-weight: 700; }
         h4, h5, h6 { font-family: 'Inter', sans-serif; font-weight: 600; }
         a {
             text-decoration: none;
@@ -65,8 +65,8 @@
         :root {
             --primary-dark: #08090d;
             --secondary-dark: #10121a;
-            --accent-red: #e23b53;
-            --accent-gold: #d4b26f;
+            --accent-red: #d84744;
+            --accent-gold: #d84744;
             --light-bg: #f5f5f7;
             --white: #ffffff;
             --text-light: #f1f2f6;
@@ -220,7 +220,7 @@
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Outfit', sans-serif; font-weight: 800;
             font-size: 1.7rem;
             font-weight: 700;
             letter-spacing: 3px;
@@ -285,11 +285,11 @@
 
         .nav-menu a.btn-enquire-nav {
             background: var(--accent-gold);
-            color: #0c0e17 !important;
-            padding: 10px 28px !important; /* Force override left/right padding */
+            color: var(--white) !important;
+            padding: 10px 24px !important; /* Force override left/right padding */
             border: none;
-            border-radius: 30px; /* Pill shape */
-            font-weight: 600;
+            border-radius: 4px; /* Rectangular shape matching screenshot */
+            font-weight: 700;
             font-size: 0.82rem;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -298,7 +298,7 @@
             display: inline-block;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212, 178, 111, 0.15);
+            box-shadow: 0 4px 15px rgba(216, 71, 68, 0.2);
         }
 
         .nav-menu a.btn-enquire-nav::after {
@@ -306,10 +306,10 @@
         }
 
         .nav-menu a.btn-enquire-nav:hover {
-            background: #e5c46e;
-            color: #0c0e17 !important;
+            background: #c03a38;
+            color: var(--white) !important;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 178, 111, 0.35);
+            box-shadow: 0 8px 25px rgba(216, 71, 68, 0.4);
         }
 
         /* Mobile Hamburger */
@@ -411,13 +411,13 @@
         }
 
         .hero-subtext {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Outfit', sans-serif;
             font-size: clamp(1.2rem, 2.5vw, 1.65rem);
             color: var(--accent-gold);
             margin-bottom: 25px;
-            font-weight: 400;
-            font-style: italic;
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .hero-location {
@@ -968,7 +968,7 @@
         }
 
         .suites-stat .count {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 2rem;
             font-weight: 700;
         }
@@ -1618,11 +1618,7 @@
             background: var(--accent-gold);
         }
         .fp-phone:hover {
-            background: #e5c46e;
-            transform: scale(1.08);
-        }
-        .fp-phone:hover {
-            background: #e5c46e;
+            background: #c03a38;
             transform: scale(1.08);
         }
 
@@ -1630,7 +1626,7 @@
             background: var(--accent-gold);
         }
         .fp-enquire:hover {
-            background: #b89840;
+            background: #c03a38;
             transform: scale(1.08);
         }
 
@@ -1820,7 +1816,7 @@
     <header class="site-header" id="siteHeader">
         <div class="header-inner">
             <a href="#" class="logo">
-                <span class="pink">PINK</span><span class="walk">WALK</span>
+                <span class="pink">PINK</span><span class="walk">SIGNATURE</span>
             </a>
             <nav class="nav-menu" id="navMenu">
                 <a href="#about">About</a>
@@ -1849,16 +1845,14 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-subtitle fade-in">PREMIUM CORPORATE OFFICES</p>
-            <h1 class="hero-title fade-in" style="transition-delay: 0.15s;">OFFICES AT PINKWALK</h1>
-            <p class="hero-subtext fade-in" style="transition-delay: 0.3s;">Elevate Your Business with a Prestigious Address</p>
-            <p class="hero-location fade-in" style="transition-delay: 0.4s;">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Opp. Akshay Patra, Jagatpura, Jaipur
+            <h1 class="hero-title fade-in" style="transition-delay: 0.15s; font-size: 5rem; font-weight: 900; letter-spacing: 2px;"><span class="pink" style="color: var(--accent-gold);">PINK</span><span class="white" style="color: var(--white);">SIGNATURE</span></h1>
+            <p class="hero-subtext fade-in" style="transition-delay: 0.3s; font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Corporate Offices @ PinkWalk</p>
+            <p class="hero-location fade-in" style="transition-delay: 0.4s; font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">
+                Opp. Akshay Patra Jagatpura Jaipur
             </p>
-            <div class="hero-ctas fade-in" style="transition-delay: 0.55s;">
-                <a href="#elevate" class="btn-primary">Explore Offices</a>
-                <a href="#enquiry" class="btn-secondary">Get Brochure &amp; Pricing</a>
+            <div class="hero-ctas fade-in" style="transition-delay: 0.55s; margin-top: 35px;">
+                <a href="#elevate" class="btn-primary" style="border-radius: 4px; padding: 16px 36px;">Explore Workspace</a>
+                <a href="#enquiry" class="btn-secondary" style="border-radius: 4px; padding: 16px 36px;">Get Instant Quote</a>
             </div>
         </div>
         <div class="scroll-indicator" id="scrollIndicator">
@@ -1875,7 +1869,7 @@
         <div class="container">
             <div class="about-inner">
                 <span class="sub-label fade-in">JAIPUR'S PREMIUM BUSINESS DESTINATION</span>
-                <h2 class="section-heading fade-in">About PinkWalk</h2>
+                <h2 class="section-heading fade-in" style="font-family: 'Outfit', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 2.5rem; letter-spacing: 1px;">About <span style="color: var(--accent-gold);">PinkWalk</span></h2>
                 <p class="about-text fade-in">PinkWalk is Jaipur's premier mixed-use destination, seamlessly integrating retail, dining, entertainment, hospitality, and commercial spaces. Strategically located in Jagatpura, it offers excellent connectivity and a thriving business ecosystem.</p>
                 <p class="about-text fade-in">At the heart of this landmark development, PinkSignature provides premium office spaces designed for modern businesses and ambitious professionals.</p>
             </div>
@@ -2446,7 +2440,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <span class="pink">PINK</span><span class="walk">WALK</span>
+                        <span class="pink">PINK</span><span class="walk">SIGNATURE</span>
                     </a>
                     <p>Jaipur's premier mixed-use destination integrating retail, dining, entertainment, hospitality, and commercial spaces.</p>
                 </div>
