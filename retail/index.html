@@ -851,50 +851,152 @@
         /* ============================================================
            SECTION 6: RETAIL MIX
            ============================================================ */
-        .retail-mix-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+        /* Brand Marquee */
+        .brand-marquee-container {
+            position: relative;
+            width: 100%;
             margin: 50px 0 40px;
         }
 
-        .retail-mix-card {
-            background: var(--white);
-            border-radius: 4px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: var(--transition-smooth);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+        .brand-marquee-container::before,
+        .brand-marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .brand-marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--light-bg) 0%, transparent 100%);
+        }
+
+        .brand-marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--light-bg) 0%, transparent 100%);
+        }
+
+        .brand-marquee-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
             position: relative;
+            padding: 16px 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
         }
 
-        .retail-mix-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--gold);
+        .brand-marquee-wrapper::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
         }
 
-        .retail-mix-card .mix-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(212, 178, 111, 0.08);
+        .brand-marquee-track {
+            display: flex;
+            gap: 18px;
+            width: max-content;
+        }
+
+        /* Marquee Arrow Buttons */
+        .marquee-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 0.8;
         }
 
-        .retail-mix-card .mix-icon svg {
-            width: 26px;
-            height: 26px;
-            fill: var(--accent-red);
+        .marquee-arrow:hover {
+            background: #ffffff;
+            color: var(--gold, #c5a880);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+            opacity: 1;
+            transform: translateY(-50%) scale(1.08);
         }
 
-        .retail-mix-card h4 {
-            font-size: 16px;
-            color: var(--primary-dark);
-            font-weight: 600;
+        .marquee-arrow.left-arrow {
+            left: 15px;
+        }
+
+        .marquee-arrow.right-arrow {
+            right: 15px;
+        }
+
+        .brand-card {
+            width: 230px;
+            height: 175px;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 14px 12px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            gap: 6px;
+        }
+
+        .brand-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+            transform: translateY(-3px);
+        }
+
+        .brand-card img {
+            max-width: 160px;
+            max-height: 72px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+        }
+
+        .brand-logo-fallback {
+            font-size: 13px;
+            font-weight: 700;
+            color: #222;
+            text-align: center;
+            line-height: 1.2;
+            display: none;
+        }
+
+        .brand-status {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .brand-status.operational {
+            color: var(--accent-red);
+        }
+
+        .brand-status.coming-soon {
+            color: #aaa;
         }
 
         .bottom-note {
@@ -1082,7 +1184,7 @@
            SECTION 11: AQUARIUM
            ============================================================ */
         .aquarium-section {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, rgba(8,9,13,0.72) 0%, rgba(8,9,13,0.58) 100%), url('assets/Aquarium 2.png') center/cover no-repeat;
             position: relative;
             overflow: hidden;
             padding: 140px 0;
@@ -1258,7 +1360,7 @@
            SECTION 14: WALKTHROUGH
            ============================================================ */
         .walkthrough-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            background: linear-gradient(160deg, #0a0c12 0%, #111520 40%, #0e1018 100%);
             padding: 120px 0;
             text-align: center;
         }
@@ -1367,19 +1469,60 @@
         /* ============================================================
            SECTION 15: GALLERY
            ============================================================ */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+        .gallery-marquee-wrapper {
+            overflow: hidden;
+            position: relative;
             margin-top: 50px;
+            padding: 10px 0;
+        }
+
+        .gallery-marquee-wrapper::before,
+        .gallery-marquee-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .gallery-marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--white, #fff) 0%, transparent 100%);
+        }
+
+        .gallery-marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--white, #fff) 0%, transparent 100%);
+        }
+
+        .gallery-marquee-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: galleryScroll 28s linear infinite;
+        }
+
+        .gallery-marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes galleryScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .gallery-item {
-            border-radius: 4px;
+            width: 380px;
+            height: 270px;
+            border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            aspect-ratio: 4/3;
+            flex-shrink: 0;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
         .gallery-item img {
@@ -1411,11 +1554,11 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .gallery-item:hover::before {
-            background: rgba(8, 9, 13, 0.5);
+            background: rgba(8, 9, 13, 0.45);
         }
 
         .gallery-item:hover::after {
@@ -1771,8 +1914,9 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .gallery-item {
+                width: 280px;
+                height: 210px;
             }
 
             .zone-grid {
@@ -1897,8 +2041,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .gallery-item {
+                width: 260px;
+                height: 195px;
             }
 
             .zone-grid {
@@ -1958,14 +2103,13 @@
          ============================================================ -->
     <section class="hero" id="hero">
         <video class="hero-video-bg" autoplay loop muted playsinline poster="https://www.manglamgroup.com/wp-content/uploads/2026/07/A-Retail-Destination-Designed-for-Success-01.png">
-            <source src="assets/video/hero-bg.mp4" type="video/mp4">
+            <source src="assets/video/Retail_home paage banner.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-subtitle">RAJASTHAN'S LARGEST LIFESTYLE DESTINATION</div>
+            <div class="hero-subtitle">RAJASTHAN'S LIFESTYLE DESTINATION</div>
             <h1 class="hero-title">RETAIL SPACES AT PINKWALK</h1>
-            <div class="hero-subtext">It's Not Large. It's The Largest.</div>
             <div class="hero-location">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 Opp. Akshay Patra, Jagatpura, Jaipur
@@ -1989,9 +2133,9 @@
             <div class="about-grid">
                 <div class="about-content fade-in">
                     <span class="sub-label">WELCOME TO LUXURY RETAIL</span>
-                    <h2 class="section-heading">It's Not Large. It's The Largest.</h2>
+                    <h2 class="section-heading">Where Every Visit Feels Exceptional.</h2>
                     <div class="gold-divider"></div>
-                    <p class="section-text">Welcome to PinkWalk Jaipur, Rajasthan's largest shopping mall and lifestyle city center, designed to transform the retail landscape of Jaipur. With an exceptional mix of retail, entertainment, dining, and leisure experiences, PinkWalk is more than a shopping destination — it's a thriving ecosystem where brands grow, businesses prosper, and customers return.</p>
+                    <p class="section-text">Welcome to PinkWalk Jaipur, Rajasthan's Luxury shopping mall and lifestyle city center, designed to transform the retail landscape of Jaipur. With an exceptional mix of retail, entertainment, dining, and leisure experiences, PinkWalk is more than a shopping destination — it's a thriving ecosystem where brands grow, businesses prosper, and customers return.</p>
                     <p class="section-text">Strategically located in the heart of Jagatpura, PinkWalk offers retailers, investors, and entrepreneurs a unique opportunity to become part of Jaipur's next landmark retail destination.</p>
                 </div>
                 <div class="about-features fade-in-right">
@@ -2016,31 +2160,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         SECTION 2: COUNTER STATS BAR
-         ============================================================ -->
-    <section class="stats-bar" id="statsBar">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item fade-in stagger-1">
-                    <div class="stat-number" data-target="1500000" data-format="indian">15,00,000+</div>
-                    <div class="stat-label">Sq. Ft. Total Area</div>
-                </div>
-                <div class="stat-item fade-in stagger-2">
-                    <div class="stat-number" data-target="2000" data-suffix="+">2000+</div>
-                    <div class="stat-label">Parking Spaces</div>
-                </div>
-                <div class="stat-item fade-in stagger-3">
-                    <div class="stat-number" data-target="6">6</div>
-                    <div class="stat-label">Screen Multiplex</div>
-                </div>
-                <div class="stat-item fade-in stagger-4">
-                    <div class="stat-number" data-target="498">498</div>
-                    <div class="stat-label">Retail Units</div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- ============================================================
          SECTION 3: WHY PINKWALK
@@ -2137,51 +2257,7 @@
                 <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Map.png" alt="PinkWalk Location Map">
             </div>
 
-            <h3 class="section-heading fade-in" style="font-size: 30px; margin-top: 50px;">Key Nearby Destinations</h3>
-            <div class="gold-divider fade-in" style="margin-bottom: 30px;"></div>
 
-            <div class="nearby-grid">
-                <div class="nearby-item fade-in stagger-1">
-                    <div class="distance">200 M</div>
-                    <div class="place-name">Akshay Patra</div>
-                </div>
-                <div class="nearby-item fade-in stagger-2">
-                    <div class="distance">500 M</div>
-                    <div class="place-name">Pratap Nagar / Gyan Vihar University</div>
-                </div>
-                <div class="nearby-item fade-in stagger-3">
-                    <div class="distance">1.5 KM</div>
-                    <div class="place-name">NRI Colony</div>
-                </div>
-                <div class="nearby-item fade-in stagger-4">
-                    <div class="distance">2.3 KM</div>
-                    <div class="place-name">Bombay Hospital</div>
-                </div>
-                <div class="nearby-item fade-in stagger-5">
-                    <div class="distance">3.5 KM</div>
-                    <div class="place-name">Tonk Road / Proposed Metro Station</div>
-                </div>
-                <div class="nearby-item fade-in stagger-6">
-                    <div class="distance">5 KM</div>
-                    <div class="place-name">Chokhi Dhani</div>
-                </div>
-                <div class="nearby-item fade-in stagger-7">
-                    <div class="distance">6 KM</div>
-                    <div class="place-name">Jaipur International Airport</div>
-                </div>
-                <div class="nearby-item fade-in stagger-8">
-                    <div class="distance">6.9 KM</div>
-                    <div class="place-name">Malviya Nagar</div>
-                </div>
-                <div class="nearby-item fade-in">
-                    <div class="distance">7.5 KM</div>
-                    <div class="place-name">JNU</div>
-                </div>
-                <div class="nearby-item fade-in">
-                    <div class="distance">9 KM</div>
-                    <div class="place-name">World Trade Park</div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -2196,56 +2272,434 @@
             <p class="section-text fade-in" style="margin: 0 auto 10px;">PinkWalk's carefully curated retail ecosystem ensures that every category receives dedicated visibility and customer engagement.</p>
             <p class="section-text fade-in" style="margin: 0 auto; font-weight: 500; color: #333;">The mall is designed to accommodate:</p>
 
-            <div class="retail-mix-grid">
-                <div class="retail-mix-card fade-in stagger-1">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM3 18V6h8v12H3z"/></svg>
+            <!-- Brand Marquee Wall -->
+            <div class="brand-marquee-container fade-in">
+                <button class="marquee-arrow left-arrow" id="brandScrollLeft" aria-label="Scroll Left">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/></svg>
+                </button>
+                <div class="brand-marquee-wrapper">
+                    <div class="brand-marquee-track" id="brandMarqueeTrack">
+                        <!-- ===== SET 1 ===== -->
+                    <div class="brand-card">
+                        <img src="logo/westside.jpg" alt="Westside">
+                        <span class="brand-name">Westside</span>
+                        <span class="brand-status operational">Fully Operational</span>
                     </div>
-                    <h4>Footwear</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-2">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/jack and jones.jpg" alt="Jack &amp; Jones">
+                        <span class="brand-name">Jack &amp; Jones</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Home Decor</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-3">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/Blackberrys.png" alt="Blackberrys">
+                        <span class="brand-name">Blackberrys</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Beauty &amp; Cosmetics</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-4">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/Timezone.jpg" alt="Timezone">
+                        <span class="brand-name">Timezone</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Food &amp; Beverage Outlets</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-5">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/Miraj Cinemas.png" alt="Miraj Cinemas">
+                        <span class="brand-name">Miraj Cinemas</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Specialty Retail Stores</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-6">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/metro.png" alt="Metro">
+                        <span class="brand-name">Metro</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Accessories &amp; Lifestyle Products</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-7">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17.73 12.02l3.98-3.98c.39-.39.39-1.02 0-1.41l-4.34-4.34c-.39-.39-1.02-.39-1.41 0l-3.98 3.98L8 2.29C7.8 2.1 7.55 2 7.29 2c-.25 0-.51.1-.7.29L2.25 6.63c-.39.39-.39 1.02 0 1.41l3.98 3.98L2.25 16c-.39.39-.39 1.02 0 1.41l4.34 4.34c.39.39 1.02.39 1.41 0l3.98-3.98 3.98 3.98c.2.2.45.29.71.29.26 0 .51-.1.71-.29l4.34-4.34c.39-.39.39-1.02 0-1.41l-3.99-3.98z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/max.png" alt="Max">
+                        <span class="brand-name">Max</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Health &amp; Wellness Brands</h4>
-                </div>
-                <div class="retail-mix-card fade-in stagger-8">
-                    <div class="mix-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                    <div class="brand-card">
+                        <img src="logo/Lifestyle.png" alt="Lifestyle">
+                        <span class="brand-name">Lifestyle</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
                     </div>
-                    <h4>Electronics &amp; Mobile Stores</h4>
-                </div>
-            </div>
+                    <div class="brand-card">
+                        <img src="logo/Azorte.png" alt="Azorte">
+                        <span class="brand-name">Azorte</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Pantaloons.jpg" alt="Pantaloons">
+                        <span class="brand-name">Pantaloons</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Vero Moda.png" alt="Vero Moda">
+                        <span class="brand-name">Vero Moda</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Titan Eye+.png" alt="Titan Eye+">
+                        <span class="brand-name">Titan Eye+</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Rare Rabbit.png" alt="Rare Rabbit">
+                        <span class="brand-name">Rare Rabbit</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Taco Bell.png" alt="Taco Bell">
+                        <span class="brand-name">Taco Bell</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Inc.5.png" alt="Inc.5">
+                        <span class="brand-name">Inc.5</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Bata.jpg" alt="Bata">
+                        <span class="brand-name">Bata</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Tissot.png" alt="Tissot">
+                        <span class="brand-name">Tissot</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/BlueStone.png" alt="BlueStone">
+                        <span class="brand-name">BlueStone</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/CaratLane.png" alt="CaratLane">
+                        <span class="brand-name">CaratLane</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Go Colors.png" alt="Go Colors">
+                        <span class="brand-name">Go Colors</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Burger King.png" alt="Burger King">
+                        <span class="brand-name">Burger King</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Nykaa.png" alt="Nykaa">
+                        <span class="brand-name">Nykaa</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Jus Jumpin.jpg" alt="Jus Jumpin">
+                        <span class="brand-name">Jus Jumpin</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/WROGN.png" alt="WROGN">
+                        <span class="brand-name">WROGN</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Looks Salon.jpg" alt="Looks Salon">
+                        <span class="brand-name">Looks Salon</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Market99.jpg" alt="Market99">
+                        <span class="brand-name">Market99</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Skechersjpg.jpg" alt="Skechers">
+                        <span class="brand-name">Skechers</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Biba.png" alt="BIBA">
+                        <span class="brand-name">BIBA</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+
+                    <div class="brand-card">
+                        <img src="logo/WOW MOMO.png" alt="WOW! Momo">
+                        <span class="brand-name">WOW! Momo</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/WOW CHINA.png" alt="WOW! China">
+                        <span class="brand-name">WOW! China</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/MINISO.png" alt="MINISO">
+                        <span class="brand-name">MINISO</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/COVER STORY.png" alt="Cover Story">
+                        <span class="brand-name">Cover Story</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/BEWAKOOF.png" alt="Bewakoof">
+                        <span class="brand-name">Bewakoof</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/ED A MAMMA.png" alt="Ed-a-Mamma">
+                        <span class="brand-name">Ed-a-Mamma</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/YOUSTA.png" alt="Yousta">
+                        <span class="brand-name">Yousta</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/KFC.png" alt="KFC">
+                        <span class="brand-name">KFC</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/ORIGEM.png" alt="Origem">
+                        <span class="brand-name">Origem</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/tira.png" alt="Tira">
+                        <span class="brand-name">Tira</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/ODETTE.png" alt="Odette">
+                        <span class="brand-name">Odette</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/KUSHAL's.png" alt="Kushal's">
+                        <span class="brand-name">Kushal's</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Purple United Kids.png" alt="Purple United Kids">
+                        <span class="brand-name">Purple United Kids</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <!-- ===== SET 2 (duplicate for seamless infinite loop) ===== -->
+                    <div class="brand-card">
+                        <img src="logo/westside.jpg" alt="Westside">
+                        <span class="brand-name">Westside</span>
+                        <span class="brand-status operational">Fully Operational</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/jack and jones.jpg" alt="Jack &amp; Jones">
+                        <span class="brand-name">Jack &amp; Jones</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Blackberrys.png" alt="Blackberrys">
+                        <span class="brand-name">Blackberrys</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Timezone.jpg" alt="Timezone">
+                        <span class="brand-name">Timezone</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Miraj Cinemas.png" alt="Miraj Cinemas">
+                        <span class="brand-name">Miraj Cinemas</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/metro.png" alt="Metro">
+                        <span class="brand-name">Metro</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/max.png" alt="Max">
+                        <span class="brand-name">Max</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Lifestyle.png" alt="Lifestyle">
+                        <span class="brand-name">Lifestyle</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Azorte.png" alt="Azorte">
+                        <span class="brand-name">Azorte</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Pantaloons.jpg" alt="Pantaloons">
+                        <span class="brand-name">Pantaloons</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Vero Moda.png" alt="Vero Moda">
+                        <span class="brand-name">Vero Moda</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Titan Eye+.png" alt="Titan Eye+">
+                        <span class="brand-name">Titan Eye+</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Rare Rabbit.png" alt="Rare Rabbit">
+                        <span class="brand-name">Rare Rabbit</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Taco Bell.png" alt="Taco Bell">
+                        <span class="brand-name">Taco Bell</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Inc.5.png" alt="Inc.5">
+                        <span class="brand-name">Inc.5</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Bata.jpg" alt="Bata">
+                        <span class="brand-name">Bata</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Tissot.png" alt="Tissot">
+                        <span class="brand-name">Tissot</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/BlueStone.png" alt="BlueStone">
+                        <span class="brand-name">BlueStone</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/CaratLane.png" alt="CaratLane">
+                        <span class="brand-name">CaratLane</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Go Colors.png" alt="Go Colors">
+                        <span class="brand-name">Go Colors</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Burger King.png" alt="Burger King">
+                        <span class="brand-name">Burger King</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Nykaa.png" alt="Nykaa">
+                        <span class="brand-name">Nykaa</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Jus Jumpin.jpg" alt="Jus Jumpin">
+                        <span class="brand-name">Jus Jumpin</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/WROGN.png" alt="WROGN">
+                        <span class="brand-name">WROGN</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Looks Salon.jpg" alt="Looks Salon">
+                        <span class="brand-name">Looks Salon</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Market99.jpg" alt="Market99">
+                        <span class="brand-name">Market99</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Skechersjpg.jpg" alt="Skechers">
+                        <span class="brand-name">Skechers</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Biba.png" alt="BIBA">
+                        <span class="brand-name">BIBA</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+
+                    <div class="brand-card">
+                        <img src="logo/WOW MOMO.png" alt="WOW! Momo">
+                        <span class="brand-name">WOW! Momo</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/WOW CHINA.png" alt="WOW! China">
+                        <span class="brand-name">WOW! China</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/MINISO.png" alt="MINISO">
+                        <span class="brand-name">MINISO</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/COVER STORY.png" alt="Cover Story">
+                        <span class="brand-name">Cover Story</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/BEWAKOOF.png" alt="Bewakoof">
+                        <span class="brand-name">Bewakoof</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/ED A MAMMA.png" alt="Ed-a-Mamma">
+                        <span class="brand-name">Ed-a-Mamma</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/YOUSTA.png" alt="Yousta">
+                        <span class="brand-name">Yousta</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/KFC.png" alt="KFC">
+                        <span class="brand-name">KFC</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/ORIGEM.png" alt="Origem">
+                        <span class="brand-name">Origem</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/tira.png" alt="Tira">
+                        <span class="brand-name">Tira</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/ODETTE.png" alt="Odette">
+                        <span class="brand-name">Odette</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/KUSHAL's.png" alt="Kushal's">
+                        <span class="brand-name">Kushal's</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="brand-card">
+                        <img src="logo/Purple United Kids.png" alt="Purple United Kids">
+                        <span class="brand-name">Purple United Kids</span>
+                        <span class="brand-status coming-soon">Coming Soon</span>
+                    </div>
+
+                </div><!-- end track -->
+            </div><!-- end marquee wrapper -->
+            <button class="marquee-arrow right-arrow" id="brandScrollRight" aria-label="Scroll Right">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/></svg>
+            </button>
+        </div><!-- end marquee container -->
 
             <p class="bottom-note fade-in">A thoughtfully planned tenant mix creates a complete shopping destination while helping brands stand out within their respective categories.</p>
         </div>
@@ -2258,10 +2712,10 @@
         <div class="container">
             <div class="bazaar-images fade-in">
                 <div class="bazaar-image-wrapper">
-                    <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Pink-Bazaar-01.png" alt="Pink Bazaar Interior">
+                    <img src="assets/Lower GF Shop CC (1).jpg" alt="Pink Bazaar Interior">
                 </div>
                 <div class="bazaar-image-wrapper">
-                    <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Pink-Bazaar-02.png" alt="Pink Bazaar Marketplace">
+                    <img src="assets/Pink_Walk_Mall_Atrium 1 01 CC.jpg" alt="Pink Bazaar Marketplace">
                 </div>
             </div>
 
@@ -2343,29 +2797,29 @@
     <!-- ============================================================
          SECTION 8: DINING
          ============================================================ -->
-    <section class="section-light section-padding-lg" id="dining">
+    <section class="section-padding-lg" id="dining" style="background: linear-gradient(135deg, rgba(8,9,13,0.72) 0%, rgba(8,9,13,0.60) 100%), url('assets/Dining Experience.png') center/cover no-repeat; position: relative;">
         <div class="container text-center">
-            <span class="sub-label fade-in">CULINARY EXPERIENCES</span>
-            <h2 class="section-heading fade-in">Dining Experiences That Drive Footfall</h2>
+            <span class="sub-label fade-in" style="color: var(--gold);">CULINARY EXPERIENCES</span>
+            <h2 class="section-heading fade-in" style="color: var(--white);">Dining Experiences That Drive Footfall</h2>
             <div class="gold-divider fade-in"></div>
             <div class="dining-highlight fade-in">20,000+ Sq. Ft. Food Court</div>
-            <p class="section-text fade-in" style="margin: 0 auto 20px;">A vibrant food destination featuring a diverse range of cuisines, restaurants, cafés, coffee lounges, and quick-service restaurants.</p>
-            <p class="section-text fade-in" style="margin: 0 auto;">Located on the third floor, the expansive food court is designed to attract families, professionals, students, and visitors throughout the day, significantly increasing dwell time and repeat footfall.</p>
+            <p class="section-text fade-in" style="margin: 0 auto 20px; color: rgba(255,255,255,0.88);">A vibrant food destination featuring a diverse range of cuisines, restaurants, cafés, coffee lounges, and quick-service restaurants.</p>
+            <p class="section-text fade-in" style="margin: 0 auto; color: rgba(255,255,255,0.88);">Located on the third floor, the expansive food court is designed to attract families, professionals, students, and visitors throughout the day, significantly increasing dwell time and repeat footfall.</p>
         </div>
     </section>
 
     <!-- ============================================================
          SECTION 9: ENTERTAINMENT
          ============================================================ -->
-    <section class="section-dark section-padding-lg" id="entertainment">
+    <section class="section-padding-lg" id="entertainment" style="background: linear-gradient(135deg, rgba(8,9,13,0.70) 0%, rgba(8,9,13,0.58) 100%), url('assets/leisure and lifestyle.png') center/cover no-repeat; position: relative;">
         <div class="container text-center">
-            <span class="sub-label fade-in">LEISURE & LIFESTYLE</span>
-            <h2 class="section-heading fade-in">Entertainment That Keeps Visitors Coming Back</h2>
+            <span class="sub-label fade-in" style="color: var(--gold);">LEISURE &amp; LIFESTYLE</span>
+            <h2 class="section-heading fade-in" style="color: var(--white);">Entertainment That Keeps Visitors Coming Back</h2>
             <div class="gold-divider fade-in"></div>
-            <p class="section-text fade-in" style="margin: 0 auto 30px;">PinkWalk is designed as an all-day lifestyle destination where shopping meets entertainment.</p>
-            <h3 class="entertainment-sub fade-in">Gaming &amp; Entertainment Zone</h3>
-            <p class="section-text fade-in" style="margin: 0 auto 20px;">Spread across 28,000 sq. ft., the entertainment zone offers immersive experiences for visitors of all age groups.</p>
-            <p class="section-text fade-in" style="margin: 0 auto;">From birthday celebrations and school outings to corporate gatherings, PinkWalk is built to attract recurring visitors throughout the year.</p>
+            <p class="section-text fade-in" style="margin: 0 auto 30px; color: rgba(255,255,255,0.88);">PinkWalk is designed as an all-day lifestyle destination where shopping meets entertainment.</p>
+            <h3 class="entertainment-sub fade-in" style="color: var(--white);">Gaming &amp; Entertainment Zone</h3>
+            <p class="section-text fade-in" style="margin: 0 auto 20px; color: rgba(255,255,255,0.88);">Spread across 28,000 sq. ft., the entertainment zone offers immersive experiences for visitors of all age groups.</p>
+            <p class="section-text fade-in" style="margin: 0 auto; color: rgba(255,255,255,0.88);">From birthday celebrations and school outings to corporate gatherings, PinkWalk is built to attract recurring visitors throughout the year.</p>
         </div>
     </section>
 
@@ -2377,7 +2831,7 @@
             <span class="sub-label fade-in">CINEMA EXPERIENCE</span>
             <h2 class="section-heading fade-in">6-Screen Multiplex</h2>
             <div class="gold-divider fade-in"></div>
-            <p class="section-text fade-in" style="margin: 0 auto;">Entertainment is a key driver of mall footfall, and PinkWalk delivers a world-class cinema experience with:</p>
+            <p class="section-text fade-in" style="margin: 0 auto;">Entertainment is a key driver of mall footfall, and PinkWalk delivers a world-class cinema experience with: Miraj Cinemas </p>
 
             <div class="multiplex-stats">
                 <div class="multiplex-stat fade-in stagger-1">
@@ -2413,58 +2867,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         SECTION 12: SMART RETAIL ZONING
-         ============================================================ -->
-    <section class="section-light section-padding-lg" id="retail-zoning">
-        <div class="container text-center">
-            <span class="sub-label fade-in">ORGANIZED RETAIL</span>
-            <h2 class="section-heading fade-in">Smart Retail Zoning</h2>
-            <div class="gold-divider fade-in"></div>
-            <p class="section-text fade-in" style="margin: 0 auto;">To enhance customer navigation and shopping convenience, PinkWalk features strategically planned retail zones.</p>
 
-            <div class="zone-grid">
-                <div class="zone-card fade-in stagger-1">
-                    <div class="zone-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM3 18V6h8v12H3z"/></svg>
-                    </div>
-                    <h4>Apparel Zone</h4>
-                </div>
-                <div class="zone-card fade-in stagger-2">
-                    <div class="zone-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM3 18V6h8v12H3z"/></svg>
-                    </div>
-                    <h4>Footwear Zone</h4>
-                </div>
-                <div class="zone-card fade-in stagger-3">
-                    <div class="zone-icon">
-                        <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-                    </div>
-                    <h4>Accessories Zone</h4>
-                </div>
-                <div class="zone-card fade-in stagger-4">
-                    <div class="zone-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                    </div>
-                    <h4>Electronics Zone</h4>
-                </div>
-                <div class="zone-card fade-in stagger-5">
-                    <div class="zone-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17.73 12.02l3.98-3.98c.39-.39.39-1.02 0-1.41l-4.34-4.34c-.39-.39-1.02-.39-1.41 0l-3.98 3.98L8 2.29C7.8 2.1 7.55 2 7.29 2c-.25 0-.51.1-.7.29L2.25 6.63c-.39.39-.39 1.02 0 1.41l3.98 3.98L2.25 16c-.39.39-.39 1.02 0 1.41l4.34 4.34c.39.39 1.02.39 1.41 0l3.98-3.98 3.98 3.98c.2.2.45.29.71.29.26 0 .51-.1.71-.29l4.34-4.34c.39-.39.39-1.02 0-1.41l-3.99-3.98z"/></svg>
-                    </div>
-                    <h4>Health &amp; Wellness Zone</h4>
-                </div>
-                <div class="zone-card fade-in stagger-6">
-                    <div class="zone-icon">
-                        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                    </div>
-                    <h4>Home Decor Zone</h4>
-                </div>
-            </div>
-
-            <p class="bottom-note fade-in">This structured approach helps customers locate products effortlessly while enabling retailers to benefit from category-specific footfall.</p>
-        </div>
-    </section>
 
     <!-- ============================================================
          SECTION 13: WHY INVEST
@@ -2515,9 +2918,9 @@
          ============================================================ -->
     <section class="walkthrough-section" id="walkthrough">
         <div class="container">
-            <span class="sub-label fade-in">VIRTUAL TOUR</span>
-            <h2 class="section-heading fade-in">Walk Into Grandeur</h2>
-                <p class="section-text fade-in" style="color: var(--text-muted); max-width: 750px; margin: 20px auto 30px; font-size: 1.1rem; line-height: 1.7; font-family: var(--font-body);">Become part of Rajasthan's largest shopping and lifestyle destination. Whether you're a retailer looking to expand, an entrepreneur launching a new venture, or an investor seeking long-term growth, PinkWalk offers the perfect platform for success.</p>
+            <span class="sub-label fade-in" style="color: var(--gold);">VIRTUAL TOUR</span>
+            <h2 class="section-heading fade-in" style="color: var(--white);">Walk Into Grandeur</h2>
+                <p class="section-text fade-in" style="color: rgba(255,255,255,0.80); max-width: 750px; margin: 20px auto 30px; font-size: 1.1rem; line-height: 1.7; font-family: var(--font-body);">Become part of Rajasthan's largest shopping and lifestyle destination. Whether you're a retailer looking to expand, an entrepreneur launching a new venture, or an investor seeking long-term growth, PinkWalk offers the perfect platform for success.</p>
             <div class="gold-divider fade-in" style="margin: 20px auto;"></div>
             <div class="play-btn fade-in-scale" id="playBtn" aria-label="Play walkthrough video">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -2534,18 +2937,40 @@
             <h2 class="section-heading fade-in">PINKWALK Visual Gallery</h2>
             <div class="gold-divider fade-in"></div>
 
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in stagger-1" data-src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-7.png">
-                    <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-7.png" alt="PinkWalk Gallery 1">
-                </div>
-                <div class="gallery-item fade-in stagger-2" data-src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-9.png">
-                    <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-9.png" alt="PinkWalk Gallery 2">
-                </div>
-                <div class="gallery-item fade-in stagger-3" data-src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-10.png">
-                    <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-10.png" alt="PinkWalk Gallery 3">
-                </div>
-                <div class="gallery-item fade-in stagger-4" data-src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-5-1.png">
-                    <img src="https://www.manglamgroup.com/wp-content/uploads/2026/07/Gallery-5-1.png" alt="PinkWalk Gallery 4">
+            <div class="gallery-marquee-wrapper">
+                <div class="gallery-marquee-track" id="galleryMarqueeTrack">
+                    <!-- ===== SET 1 ===== -->
+                    <div class="gallery-item" data-src="gallery1.jpeg">
+                        <img src="gallery1.jpeg" alt="PinkWalk Gallery 1">
+                    </div>
+                    <div class="gallery-item" data-src="gallery2.jpeg">
+                        <img src="gallery2.jpeg" alt="PinkWalk Gallery 2">
+                    </div>
+                    <div class="gallery-item" data-src="Gallery3.JPG">
+                        <img src="Gallery3.JPG" alt="PinkWalk Gallery 3">
+                    </div>
+                    <div class="gallery-item" data-src="gallery4.jpeg">
+                        <img src="gallery4.jpeg" alt="PinkWalk Gallery 4">
+                    </div>
+                    <div class="gallery-item" data-src="gallery5.jpeg">
+                        <img src="gallery5.jpeg" alt="PinkWalk Gallery 5">
+                    </div>
+                    <!-- ===== SET 2 (duplicate for seamless infinite loop) ===== -->
+                    <div class="gallery-item" data-src="gallery1.jpeg">
+                        <img src="gallery1.jpeg" alt="PinkWalk Gallery 1">
+                    </div>
+                    <div class="gallery-item" data-src="gallery2.jpeg">
+                        <img src="gallery2.jpeg" alt="PinkWalk Gallery 2">
+                    </div>
+                    <div class="gallery-item" data-src="Gallery3.JPG">
+                        <img src="Gallery3.JPG" alt="PinkWalk Gallery 3">
+                    </div>
+                    <div class="gallery-item" data-src="gallery4.jpeg">
+                        <img src="gallery4.jpeg" alt="PinkWalk Gallery 4">
+                    </div>
+                    <div class="gallery-item" data-src="gallery5.jpeg">
+                        <img src="gallery5.jpeg" alt="PinkWalk Gallery 5">
+                    </div>
                 </div>
             </div>
         </div>
@@ -2564,7 +2989,7 @@
                     <p class="section-text" style="margin-bottom: 30px;">Take the first step toward owning a premium retail space at Rajasthan's largest shopping, entertainment, and lifestyle destination. Our team will connect with you shortly.</p>
                     <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
                         <svg width="20" height="20" fill="var(--gold)" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        <span style="color: var(--text-light); font-size: 16px;">+91 99285 44444</span>
+                        <span style="color: var(--text-light); font-size: 16px;">0141-4311193</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 14px;">
                         <svg width="20" height="20" fill="var(--gold)" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -2637,7 +3062,7 @@
                 <div class="footer-col">
                     <h5>Contact</h5>
                     <a href="#">Opp. Akshay Patra, Jagatpura, Jaipur</a>
-                    <a href="tel:+919928544444">+91 99285 44444</a>
+                    <a href="tel:01414311193">0141-4311193</a>
                     <a href="#enquiry">Send Enquiry</a>
                 </div>
             </div>
@@ -2651,17 +3076,13 @@
          FLOATING RIGHT PANEL
          ============================================================ -->
     <div class="floating-panel" id="floatingPanel">
-        <a href="tel:+919928544444" class="fp-phone">
+        <a href="tel:01414311193" class="fp-phone">
             <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            <span class="fp-text">+91 99285 44444</span>
+            <span class="fp-text">0141-4311193</span>
         </a>
         <a href="#enquiry" class="fp-enquire">
             <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span class="fp-text">Enquire Now</span>
-        </a>
-        <a href="https://wa.me/919928544444" target="_blank" rel="noopener" class="fp-whatsapp">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span class="fp-text">WhatsApp</span>
         </a>
     </div>
 
@@ -2682,7 +3103,7 @@
         <div class="modal-close" id="modalClose">
             <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </div>
-        <iframe id="videoIframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <video id="videoPlayer" src="" controls style="width: 100%; max-width: 960px; height: 540px; border-radius: 4px; border: none; outline: none;"></video>
     </div>
 
     <!-- ============================================================
@@ -2860,15 +3281,16 @@
             var lightbox = document.getElementById('lightbox');
             var lbImage = document.getElementById('lbImage');
             var lbClose = document.getElementById('lbClose');
-            var galleryItems = document.querySelectorAll('.gallery-item');
 
-            galleryItems.forEach(function (item) {
-                item.addEventListener('click', function () {
-                    var src = item.getAttribute('data-src');
-                    lbImage.src = src;
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+            /* Use event delegation so duplicated marquee cards also trigger lightbox */
+            document.addEventListener('click', function (e) {
+                var item = e.target.closest('.gallery-item');
+                if (!item) return;
+                var src = item.getAttribute('data-src');
+                if (!src) return;
+                lbImage.src = src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
 
             function closeLightbox() {
@@ -2900,18 +3322,22 @@
             var playBtn = document.getElementById('playBtn');
             var videoModal = document.getElementById('videoModal');
             var modalClose = document.getElementById('modalClose');
-            var videoIframe = document.getElementById('videoIframe');
-            var videoUrl = 'https://www.youtube.com/embed/dQw4w9WcXgQ?autoplay=1';
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoUrl = 'assets/video/Virtual Tour video.mp4';
 
             playBtn.addEventListener('click', function () {
-                videoIframe.src = videoUrl;
+                videoPlayer.src = videoUrl;
                 videoModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                videoPlayer.play().catch(function(e) {
+                    console.log("Auto-play prevented: ", e);
+                });
             });
 
             function closeVideoModal() {
                 videoModal.classList.remove('active');
-                videoIframe.src = '';
+                videoPlayer.pause();
+                videoPlayer.src = '';
                 document.body.style.overflow = '';
             }
 
@@ -3043,6 +3469,99 @@
                         document.addEventListener('touchstart', startVideo);
                     });
                 }
+            }
+        })();
+
+        /* ==========================================================
+           13. BRAND MARQUEE CONTROLLER (Slow Scroll & Manual Navigation)
+           ========================================================== */
+        (function () {
+            var wrapper = document.querySelector('.brand-marquee-wrapper');
+            var track = document.getElementById('brandMarqueeTrack');
+            var btnLeft = document.getElementById('brandScrollLeft');
+            var btnRight = document.getElementById('brandScrollRight');
+            
+            if (!wrapper || !track) return;
+
+            var scrollSpeed = 0.35; // Very slow speed (0.35 pixels per frame)
+            var currentScroll = 0;
+            var isPaused = false;
+            var resumeTimeout = null;
+
+            function scrollLoop() {
+                if (!isPaused) {
+                    currentScroll += scrollSpeed;
+                    
+                    var halfWidth = track.scrollWidth / 2;
+                    if (currentScroll >= halfWidth) {
+                        currentScroll = 0;
+                    }
+                    wrapper.scrollLeft = currentScroll;
+                } else {
+                    currentScroll = wrapper.scrollLeft;
+                    var halfWidth = track.scrollWidth / 2;
+                    if (currentScroll >= halfWidth) {
+                        currentScroll = currentScroll % halfWidth;
+                        wrapper.scrollLeft = currentScroll;
+                    } else if (currentScroll < 0) {
+                        currentScroll = halfWidth + (currentScroll % halfWidth);
+                        wrapper.scrollLeft = currentScroll;
+                    }
+                }
+                requestAnimationFrame(scrollLoop);
+            }
+
+            requestAnimationFrame(scrollLoop);
+
+            // Pause on hover
+            wrapper.addEventListener('mouseenter', function () {
+                isPaused = true;
+            });
+            wrapper.addEventListener('mouseleave', function () {
+                if (!resumeTimeout) {
+                    isPaused = false;
+                }
+            });
+
+            // Mobile touch interaction
+            wrapper.addEventListener('touchstart', function () {
+                isPaused = true;
+                if (resumeTimeout) {
+                    clearTimeout(resumeTimeout);
+                    resumeTimeout = null;
+                }
+            }, { passive: true });
+            
+            wrapper.addEventListener('touchend', function () {
+                resumeTimeout = setTimeout(function () {
+                    isPaused = false;
+                    resumeTimeout = null;
+                }, 2500);
+            }, { passive: true });
+
+            function tempPauseForManual() {
+                isPaused = true;
+                if (resumeTimeout) {
+                    clearTimeout(resumeTimeout);
+                }
+                resumeTimeout = setTimeout(function () {
+                    isPaused = false;
+                    resumeTimeout = null;
+                }, 4000); // Resume auto-scroll after 4 seconds
+            }
+
+            if (btnLeft) {
+                btnLeft.addEventListener('click', function () {
+                    tempPauseForManual();
+                    wrapper.scrollBy({ left: -260, behavior: 'smooth' });
+                });
+            }
+
+            if (btnRight) {
+                btnRight.addEventListener('click', function () {
+                    tempPauseForManual();
+                    wrapper.scrollBy({ left: 260, behavior: 'smooth' });
+                });
             }
         })();
     
